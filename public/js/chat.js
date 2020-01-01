@@ -9,7 +9,13 @@ const form = document.getElementById("messageForm");
 form.addEventListener("submit", event => {
   event.preventDefault();
   const message = event.target.elements.message.value;
-  socket.emit("sendMessage", message);
+  socket.emit("sendMessage", message, error => {
+    if (error) {
+      return console.log(error);
+    }
+
+    console.log("Delivered");
+  });
 });
 
 const locationBtn = document.getElementById("share_location");
@@ -20,9 +26,15 @@ locationBtn.addEventListener("click", () => {
   }
 
   navigator.geolocation.getCurrentPosition(position => {
-    socket.emit("shareLocation", {
-      long: position.coords.longitude,
-      lat: position.coords.longitude
-    });
+    socket.emit(
+      "shareLocation",
+      {
+        long: position.coords.longitude,
+        lat: position.coords.longitude
+      },
+      () => {
+        console.log("Location shared succefully");
+      }
+    );
   });
 });
