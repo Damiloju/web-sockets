@@ -1,15 +1,23 @@
 const socket = io();
 
+const form = document.getElementById("messageForm");
+const messageInput = form.querySelector("input");
+const formBtn = form.querySelector("button");
+const locationBtn = document.getElementById("share_location");
+
 socket.on("message", message => {
   console.log(message);
 });
 
-const form = document.getElementById("messageForm");
-
 form.addEventListener("submit", event => {
   event.preventDefault();
-  const message = event.target.elements.message.value;
+  formBtn.setAttribute("disabled", "disabled");
+  const message = messageInput.value;
   socket.emit("sendMessage", message, error => {
+    formBtn.removeAttribute("disabled");
+    messageInput.value = "";
+    messageInput.focus();
+
     if (error) {
       return console.log(error);
     }
@@ -18,12 +26,12 @@ form.addEventListener("submit", event => {
   });
 });
 
-const locationBtn = document.getElementById("share_location");
-
 locationBtn.addEventListener("click", () => {
   if (!navigator.geolocation) {
     return alert("Geolocation is not supported by your broswer");
   }
+
+  locationBtn.setAttribute("disabled", "disabled");
 
   navigator.geolocation.getCurrentPosition(position => {
     socket.emit(
@@ -33,6 +41,7 @@ locationBtn.addEventListener("click", () => {
         lat: position.coords.longitude
       },
       () => {
+        locationBtn.removeAttribute("disabled");
         console.log("Location shared succefully");
       }
     );
