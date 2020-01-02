@@ -1,9 +1,12 @@
 /* General Styles */
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -17,7 +20,7 @@ input {
 body {
     line-height: 1.4;
     color: #333333;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
@@ -27,12 +30,14 @@ h1 {
 label {
     display: block;
     font-size: 14px;
+    font-weight: bold;
     margin-bottom: 8px;
-    color: #777;
+    color: #000000;
 }
 
 input {
-    border: 1px solid #eeeeee;
+    border: 1px solid #A7ACCC;
+    border-radius: 8px;
     padding: 12px;
     outline: none;
 }
@@ -40,8 +45,10 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: #06187E;
     border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     color: white;
     font-size: 16px;
     transition: background .3s ease;
@@ -61,7 +68,7 @@ button:disabled {
 .centered-form {
     background: #333744;
     width: 100vw;
-    height: 100vh;   
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +99,7 @@ button:disabled {
 .chat__sidebar {
     height: 100vh;
     color: white;
-    background: #333744;
+    background: #06187E;
     width: 225px;
     overflow-y: scroll
 }
@@ -100,6 +107,7 @@ button:disabled {
 /* Chat styles */
 
 .chat__main {
+    background-color: #F6F7FC;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -115,7 +123,7 @@ button:disabled {
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
 }
 
 .message__name {
@@ -149,7 +157,7 @@ button:disabled {
 }
 
 .compose input {
-    border: 1px solid #eeeeee;
+    border: 1px solid #A7ACCC;
     width: 100%;
     padding: 12px;
     margin: 0 16px 0 0;
@@ -166,7 +174,7 @@ button:disabled {
     font-weight: 400;
     font-size: 22px;
     background: #2c2f3a;
-    padding: 24px;   
+    padding: 24px;
 }
 
 .list-title {
