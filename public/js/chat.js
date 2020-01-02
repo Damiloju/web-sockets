@@ -7,11 +7,13 @@ const formBtn = form.querySelector("button");
 const locationBtn = document.getElementById("share_location");
 const messages = document.getElementById("messages");
 const sidebar = document.getElementById("sidebar");
+const mobileHeader = document.getElementById("mobile-header");
 
 //templates
 const messageTemplate = document.getElementById("message-template");
 const linkTemplate = document.getElementById("link-template");
 const sideBarTemplate = document.getElementById("sidebar-template");
+const mobileHeaderTemplate = document.getElementById("mobile-header-template");
 
 //Options
 const { username, room } = Qs.parse(location.search, {
@@ -67,7 +69,12 @@ socket.on("roomData", ({ room, users }) => {
     users
   });
 
+  const headerHtml = Mustache.render(mobileHeaderTemplate.innerHTML, {
+    room
+  });
+
   sidebar.innerHTML = html;
+  mobileHeader.innerHTML = headerHtml;
 });
 
 form.addEventListener("submit", event => {

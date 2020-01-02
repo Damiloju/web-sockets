@@ -11,6 +11,7 @@
     <div class="chat">
       <div id="sidebar" class="chat__sidebar"></div>
       <div class="chat__main">
+        <div id="mobile-header"></div>
         <div id="messages" class="chat__messages"></div>
 
         <div class="compose">
@@ -60,6 +61,10 @@
             <li>{{username}}</li>
         {{/users}}
       </ul>
+    </script>
+
+    <script id="mobile-header-template" type="text/html">
+      <h2 class="room-title-mobile">{{ room }} Chat Room</h2>;
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>

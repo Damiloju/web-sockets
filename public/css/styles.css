@@ -178,6 +178,15 @@ button:disabled {
     padding: 24px;
 }
 
+.room-title-mobile {
+    display: none;
+    font-weight: 400;
+    font-size: 15px;
+    background: #06187E;
+    color: white;
+    padding: 15px;
+}
+
 .list-title {
     font-weight: 500;
     font-size: 18px;
@@ -196,6 +205,10 @@ button:disabled {
     font-style: italic;
 }
 
+#mobile-header {
+    display: none;
+}
+
 @media(max-width:768px) {
     .compose {
         flex-direction: column;
@@ -208,14 +221,18 @@ button:disabled {
 
     }
 
-
-
     .chat__sidebar {
         display: none;
     }
 
     button {
         margin-top: 10px;
+    }
+
+    .room-title-mobile,
+    #mobile-header {
+        display: block;
+        text-transform: capitalize;
     }
 
 }
