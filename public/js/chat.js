@@ -14,7 +14,8 @@ const linkTemplate = document.getElementById("link-template");
 socket.on("message", message => {
   console.log(message);
   const html = Mustache.render(messageTemplate.innerHTML, {
-    message
+    message: message.text,
+    createdAt: moment(message.createdAt).format("h:mm a")
   });
   messages.insertAdjacentHTML("beforeend", html);
 });
@@ -22,7 +23,8 @@ socket.on("message", message => {
 socket.on("locationMessage", location => {
   console.log(location);
   const html = Mustache.render(linkTemplate.innerHTML, {
-    location
+    location: location.url,
+    createdAt: moment(location.createdAt).format("h:mm a")
   });
   messages.insertAdjacentHTML("beforeend", html);
 });
