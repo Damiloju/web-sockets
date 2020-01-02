@@ -18,24 +18,47 @@ const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
 
+const autoscroll = () => {
+  //New message element
+  const newMessage = messages.lastElementChild;
+
+  //Height of the new message
+  const newMessageStyles = getComputedStyle(newMessage);
+  const newMessageMargin = parseInt(newMessageStyles.marginBottom);
+  const newMessageHeight = newMessage.offsetHeight + newMessageMargin;
+
+  //Visible height
+  const visibleHeight = messages.offsetHeight;
+
+  // Height of messages container
+  const contentHeight = messages.scrollHeight;
+
+  // how far have i scrolled
+  const scrollOffset = messages.scrollTop + visibleHeight;
+
+  if (contentHeight - newMessageHeight <= scrollOffset) {
+    messages.scrollTop = messages.scrollHeight;
+  }
+};
+
 socket.on("message", message => {
-  console.log(message);
   const html = Mustache.render(messageTemplate.innerHTML, {
     username: message.username,
     message: message.text,
     createdAt: moment(message.createdAt).format("h:mm a")
   });
   messages.insertAdjacentHTML("beforeend", html);
+  autoscroll();
 });
 
 socket.on("locationMessage", location => {
-  console.log(location);
   const html = Mustache.render(linkTemplate.innerHTML, {
     username: location.username,
     location: location.url,
     createdAt: moment(location.createdAt).format("h:mm a")
   });
   messages.insertAdjacentHTML("beforeend", html);
+  autoscroll();
 });
 
 socket.on("roomData", ({ room, users }) => {
@@ -60,7 +83,7 @@ form.addEventListener("submit", event => {
       return alert(error);
     }
 
-    console.log("Delivered");
+    // alert("Message Delivered");
   });
 });
 
@@ -80,7 +103,7 @@ locationBtn.addEventListener("click", () => {
       },
       () => {
         locationBtn.removeAttribute("disabled");
-        console.log("Location shared succefully");
+        alert("Location shared succefully");
       }
     );
   });
