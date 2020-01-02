@@ -199,11 +199,16 @@ button:disabled {
 @media(max-width:768px) {
     .compose {
         flex-direction: column;
+        padding: 15px;
     }
 
     .compose form {
         flex-direction: column;
+        margin: 0 0 0 0;
+
     }
+
+
 
     .chat__sidebar {
         display: none;
@@ -213,7 +218,4 @@ button:disabled {
         margin-top: 10px;
     }
 
-    #share_location {
-        margin-right: 16px;
-    }
 }
