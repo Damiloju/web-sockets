@@ -111,6 +111,7 @@ button:disabled {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
     max-height: 100vh;
 }
 
@@ -193,4 +194,26 @@ button:disabled {
 .location_Link {
     text-decoration: none;
     font-style: italic;
+}
+
+@media(max-width:768px) {
+    .compose {
+        flex-direction: column;
+    }
+
+    .compose form {
+        flex-direction: column;
+    }
+
+    .chat__sidebar {
+        display: none;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+
+    #share_location {
+        margin-right: 16px;
+    }
 }
